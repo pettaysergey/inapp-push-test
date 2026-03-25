@@ -9,26 +9,30 @@ import { PwaPages } from './components/PwaPages';
 
 const queryClient = new QueryClient();
 
-const loadConfig = async () =>
-  new Promise(() => {
-    const script = document.createElement('script');
-    script.src = `${window.location.origin}/config.js`;
+// const loadConfig = async () =>
+//   new Promise(() => {
+//     const script = document.createElement('script');
+//     script.src = `${window.location.origin}/config.js`;
 
-    script.onload = () => {
-      console.log('Конфиг успешно загружен');
-    };
+//     script.onload = () => {
+//       console.log('Конфиг успешно загружен');
+//     };
 
-    document.head.appendChild(script);
-  });
+//     document.head.appendChild(script);
+//   });
 
 export const App = () => {
-  useEffect(() => {
-    loadConfig();
-  }, []);
+  console.log('isPWA(): ', isPWA());
+  // useEffect(() => {
+  //   loadConfig();
+  // }, []);
 
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
-    </BrowserRouter>
+    <div>
+      <h1>Hello from react</h1>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
+      </BrowserRouter>
+    </div>
   );
 };
