@@ -1,0 +1,4 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.fluentbit-service" (list $ $values "nsm-operator-ui.fluentbit-service") -}}
+{{- define "nsm-operator-ui.fluentbit-service" -}}
+{{- end -}}

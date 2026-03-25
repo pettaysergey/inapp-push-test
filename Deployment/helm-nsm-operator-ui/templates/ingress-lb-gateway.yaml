@@ -1,0 +1,15 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.ingress-gateway" (list $ $values "nsm-operator-ui.ingress-gateway-lb") -}}
+{{- define "nsm-operator-ui.ingress-gateway-lb" -}}
+{{- $ := index . 0 }}
+metadata:
+    name: "{{ $.Chart.Name }}-mash-ingress-gw-lb"
+spec:
+  servers:
+  - hosts:
+    - {{ required "Необходимо определить переменную altHost!" $.Values.altHost }}
+    port:
+      name: "http-{{ $.Values.appPort }}"
+      number: {{ $.Values.appPort }}
+      protocol: HTTP
+{{- end -}}

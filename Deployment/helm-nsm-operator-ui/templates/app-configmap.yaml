@@ -1,0 +1,4 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.app-configmap" (list $ $values "nsm-operator-ui.app-configmap") -}}
+{{- define "nsm-operator-ui.app-configmap" -}}
+{{- end -}}

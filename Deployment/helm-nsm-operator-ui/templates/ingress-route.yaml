@@ -1,0 +1,9 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.ingress-route" (list $ $values "nsm-operator-ui.ingress-route") -}}
+{{- define "nsm-operator-ui.ingress-route" -}}
+{{- $ := index . 0 }}
+{{- with index . 1 }}
+spec:
+  path: "/"
+{{- end }}
+{{- end -}}

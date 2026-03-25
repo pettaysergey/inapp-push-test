@@ -1,0 +1,71 @@
+@font-face {
+  font-weight: 700;
+  font-family: 'VTBGroupUI';
+  src:
+    local('VTBGroupUI'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Bold.woff2') format('woff2'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Bold.woff') format('woff'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: 'VTBGroupUI';
+  src:
+    local('VTBGroupUI'),
+    url('/connect-simple-push/fonts/VTBGroupUI-DemiBold.woff2') format('woff2'),
+    url('/connect-simple-push/fonts/VTBGroupUI-DemiBold.woff') format('woff'),
+    url('/connect-simple-push/fonts/VTBGroupUI-DemiBold.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 550;
+  font-family: 'VTBGroupUI';
+  src:
+    local('VTBGroupUI'),
+    url('/connect-simple-push/fonts/VTBGroupUI-SemiBold.woff2') format('woff2'),
+    url('/connect-simple-push/fonts/VTBGroupUI-SemiBold.woff') format('woff'),
+    url('/connect-simple-push/fonts/VTBGroupUI-SemiBold.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: 'VTBGroupUI';
+  src:
+    local('VTBGroupUI'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Medium.woff2') format('woff2'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Medium.woff') format('woff'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'VTBGroupUI';
+  src:
+    local('VTBGroupUI'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Regular.woff2') format('woff2'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Regular.woff') format('woff'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 300;
+  font-family: 'VTBGroupUI';
+  src:
+    local('VTBGroupUI'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Light.woff2') format('woff2'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Light.woff') format('woff'),
+    url('/connect-simple-push/fonts/VTBGroupUI-Light.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,16 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.ingress-tls-gateway" (list $ $values "nsm-operator-ui.ingress-tls-gateway") -}}
+{{- define "nsm-operator-ui.ingress-tls-gateway" -}}
+{{- $ := index . 0 }}
+{{- with index . 1 }}
+spec:
+  servers:
+    - port:
+        name: "http-{{ $.Values.appPort }}"
+        number: {{ $.Values.appPort }}
+        protocol: HTTP
+      hosts:
+        - {{ required "Необходимо определить переменную host!" $.Values.host }}
+        - {{ required "Необходимо определить переменную altHost!" $.Values.altHost }}
+{{- end }}
+{{- end -}}

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext", "WebWorker"],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@app/*": ["src/App/*"],
+      "@common/*": ["src/App/common/*"]
+    }
+  }
+}

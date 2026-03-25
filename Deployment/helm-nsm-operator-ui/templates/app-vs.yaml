@@ -1,0 +1,54 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.app-vs" (list $ $values "nsm-operator-ui.app-vs") -}}
+{{- define "nsm-operator-ui.app-vs" -}}
+{{- $ := index . 0 }}
+{{- with index . 1 }}
+spec:
+  gateways:
+    - {{ $.Chart.Name }}-mash-ingress-gw
+    - {{ $.Chart.Name }}-mash-ingress-gw-lb
+    - "{{ .appName | default $.Chart.Name }}-mtls-{{ $.Values.mtlsMode | lower }}-mash-ingress-gw"
+  hosts:
+    - {{ $.Values.host }}
+    - {{ required "Необходимо определить переменную altHost!" $.Values.altHost }}
+  http:
+    - match:
+        - uri:
+            prefix: "{{ .altPathToEndpoints }}"
+      rewrite:
+        uri: /nsm-operator-ui
+      route:
+        - destination:
+            host: "{{ $.Chart.Name }}"
+          headers:
+            response:
+              remove:
+                - last-modified
+              set:
+                cache-control: 'no-cache'
+    - match:
+        - uri:
+            prefix: "{{ .pathToEndpoints }}"
+      route:
+        - destination:
+            host: "{{ $.Chart.Name }}"
+          headers:
+            response:
+              remove:
+                - last-modified
+              set:
+                cache-control: 'no-cache'
+    - match:
+        - uri:
+            prefix: ""
+      route:
+        - destination:
+            host: "{{ $.Chart.Name }}"
+          headers:
+            response:
+              remove:
+                - last-modified
+              set:
+                cache-control: 'no-cache'
+{{- end }}
+{{- end -}}

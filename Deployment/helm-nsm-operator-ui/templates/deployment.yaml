@@ -1,0 +1,86 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.deployment" (list $ $values "nsm-operator-ui.deployment") -}}
+{{- define "nsm-operator-ui.deployment" -}}
+{{- $ := index . 0 }}
+{{- with index . 1 }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: {{ $.Chart.Name }}
+          envFrom:
+            - configMapRef:
+                name: "{{ .appName | default $.Chart.Name }}-config"
+            - secretRef:
+                name: "{{ .appName | default $.Chart.Name }}-secret"
+          image: "{{ $.Values.registry }}/{{ $.Chart.Name }}:{{ $.Chart.AppVersion }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ $.Values.appPort }}
+              protocol: TCP
+          resources:
+            {{- toYaml .resources | nindent 12 }}
+          volumeMounts:
+            - name: {{ $.Chart.Name }}-extra-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+            - name: {{ $.Chart.Name }}-extra-config
+              mountPath: /opt/app-root/src/config.js
+              subPath: config.js
+          livenessProbe:
+            failureThreshold: {{ $.Values.probesTimeouts.livenessProbeFailureThreshold }}
+            httpGet:
+              path: "{{ $.Values.pathToEndpoints }}"
+              port: {{ $.Values.appPort }}
+              scheme: HTTP
+            initialDelaySeconds: {{ $.Values.probesTimeouts.livenessProbeInitialDelaySeconds }}
+            periodSeconds: {{ $.Values.probesTimeouts.livenessProbePeriodSeconds }}
+            successThreshold: {{ $.Values.probesTimeouts.livenessProbeSuccessThreshold }}
+            timeoutSeconds:  {{ $.Values.probesTimeouts.livenessProbeTimeoutSeconds }}
+          readinessProbe:
+            failureThreshold: {{ $.Values.probesTimeouts.readinessProbeFailureThreshold }}
+            httpGet:
+              path: "{{ $.Values.pathToEndpoints }}"
+              port: {{ $.Values.appPort }}
+              scheme: HTTP
+            initialDelaySeconds:  {{ $.Values.probesTimeouts.readinessProbeInitialDelaySeconds }}
+            periodSeconds:  {{ $.Values.probesTimeouts.readinessProbePeriodSeconds }}
+            successThreshold:  {{ $.Values.probesTimeouts.readinessProbeSuccessThreshold }}
+            timeoutSeconds:  {{ $.Values.probesTimeouts.readinessProbeTimeoutSeconds }}
+        - name: nginx-prometheus-exporter
+          image: {{ $.Values.registry }}/nginx-exporter-sidecar:0.0.1
+          imagePullPolicy: Always
+          args:
+            - "-nginx.scrape-uri=http://127.0.0.1:{{ $.Values.appPort }}/stub_status"
+            - "-web.telemetry-path=/prometheus"
+            - '-nginx.retries=10'
+            - '-nginx.retry-interval=10s'
+          ports:
+            - name: http
+              containerPort: 9113
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+          resources:
+            limits:
+              cpu: 200m
+              memory: 256Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
+      volumes:
+        - name: {{ $.Chart.Name }}-extra-config
+          configMap:
+            name: {{ $.Chart.Name }}-extra-config
+{{- end }}
+{{- end -}}

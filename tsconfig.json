@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
+    "strict": false,
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext", "WebWorker"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react",
+    "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "noEmit": false
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src", "./types.d.ts", "./index.d.ts", "./svg.d.ts"],
+  "extends": "./tsconfig.paths.json",
+  "exclude": ["node_modules"]
 }

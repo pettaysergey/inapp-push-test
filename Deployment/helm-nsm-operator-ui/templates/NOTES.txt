@@ -1,0 +1,7 @@
+Сервис {{ .Chart.Name }} установлен.
+
+Роуты:
+host: "{{ $.Values.host | default $.Values.host }}{{ $.Values.pathToEndpoints }}"
+{{- if $.Values.altHost}}
+altHost: "{{ .altHost | default $.Values.altHost }}{{ $.Values.altPathToEndpoints }}"
+{{- end -}}

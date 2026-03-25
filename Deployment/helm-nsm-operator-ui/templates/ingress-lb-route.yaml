@@ -1,0 +1,19 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.ingress-route" (list $ $values "nsm-operator-ui-lb.ingress-route") -}}
+{{- define "nsm-operator-ui-lb.ingress-route" -}}
+{{- $ := index . 0 }}
+{{- with index . 1 }}
+metadata:
+  name: "{{ $.Chart.Name }}-lb"
+spec:
+  host: "{{  $.Values.altHost }}"
+  path: "/"
+  port:
+    targetPort: "http-{{ $.Values.appPort}}"
+  to:
+    kind: Service
+    name: "{{ $.Chart.Name }}-mash-to-gw-svc"
+    weight: 100
+  wildcardPolicy: None
+{{- end }}
+{{- end -}}

@@ -1,0 +1,57 @@
+#Short mnemocode for IS (not digital code), for example UNP,NSM
+risID: "NSM"
+#Images will be used in containers section
+images:
+  journalingSidecar: "nsm-fluentbit-sidecar"
+  tagFluentbit: "0.2.0"
+  tracingSidecar: "nsm-jaeger-sidecar"
+  tagJaeger: "1.20.3"
+  stunnelSidecar: "stunnel-sidecar"
+  tagStunnel: "0.0.1"
+#Additional pod annotations (if needed)
+#podAnnotations: {}
+#Path to use as prefix for probes,routing and istio URL matches
+pathToEndpoints: "/nsm-operator-ui"
+#App port
+appPort: 8104
+#Probes parameters
+probesTimeouts:
+  livenessProbeFailureThreshold: 13
+  livenessProbeInitialDelaySeconds: 200
+  livenessProbePeriodSeconds: 10
+  livenessProbeSuccessThreshold: 1
+  livenessProbeTimeoutSeconds: 30
+  readinessProbeFailureThreshold: 5
+  readinessProbeInitialDelaySeconds: 200
+  readinessProbePeriodSeconds: 10
+  readinessProbeSuccessThreshold: 1
+  readinessProbeTimeoutSeconds: 30
+#Resources
+resources:
+  limits:
+    cpu: 200m
+    memory: 600Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
+fluentbitResources: {}
+jaegerResources: {}
+stunnelResources: {}
+#Istio related params
+istio:
+  enabled: true
+  requestCPU: "100m"
+  requestMemory: "200Mi"
+  limitCPU: "200m"
+  limitMemory: "300Mi"
+  excludedIPs: "10.203.68.108/32" # Journaling kafka endpoint for dev-contour
+  excludedPorts: "14250"
+stunnel:
+  isEnabled: false
+tracing:
+  isEnabled: false
+logging:
+  isEnabled: false
+extraMountConfig:
+  isEnabled: true
+mtlsMode: SIMPLE

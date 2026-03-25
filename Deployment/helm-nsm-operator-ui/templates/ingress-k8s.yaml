@@ -1,0 +1,34 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.ingress-k8s" (list $ $values "nsm-operator-ui.ingress-k8s") -}}
+{{- define "nsm-operator-ui.ingress-k8s" -}}
+{{- $ := index . 0 }}
+{{- with index . 1 }}
+spec:
+  tls:
+  - hosts:
+      - "{{ .host | default $.Values.host }}"
+      - "{{ .altHost | default $.Values.altHost }}"
+    secretName: "{{ $.Chart.Name }}-k8s-tls-secret"
+  rules:
+    - host: "{{ .host | default $.Values.host }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "{{ .appName | default $.Chart.Name }}-mash-to-gw-svc"
+                port:
+                  number: {{ $.Values.appPort }}
+    - host: "{{ .altHost | default $.Values.altHost }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "{{ .appName | default $.Chart.Name }}-mash-to-gw-svc"
+                port:
+                  number: {{ $.Values.appPort }}
+{{- end }}
+{{- end -}}

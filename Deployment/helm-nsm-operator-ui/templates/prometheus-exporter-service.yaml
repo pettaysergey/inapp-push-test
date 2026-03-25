@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ $.Chart.Name }}-nginx-prometheus-exporter-headless-v1
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app: {{ $.Chart.Name }}
+  annotations:
+    tsam.vtb.ru/scrape: 'true'
+    tsam.vtb.ru/path: '/prometheus'
+    tsam.vtb.ru/port: '9113'
+    tsam.vtb.ru/project-code: "{{ $.Values.risID }}"
+    tsam.vtb.ru/ris-code: {{ include "universal-helm-library.util.risCodeByRISID" (list $.Values.risID ) }}
+    tsam.vtb.ru/esm-passthrough: 'true'
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - port: 9113
+      name: http
+      targetPort: 9113
+  selector:
+    app: {{ $.Chart.Name }}

@@ -1,0 +1,10 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.app-service" (list $ $values "nsm-operator-ui.app-service") -}}
+{{- define "nsm-operator-ui.app-service" -}}
+{{- $ := index . 0 }}
+{{- with index . 1 }}
+metadata:
+  annotations:
+    tsam.vtb.ru/scrape: 'false'
+{{- end }}
+{{- end -}}

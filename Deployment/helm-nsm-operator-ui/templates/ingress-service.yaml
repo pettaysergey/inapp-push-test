@@ -1,0 +1,4 @@
+{{- $values := .Values }}
+{{- include "universal-helm-library.ingress-service" (list $ $values "nsm-operator-ui.ingress-service") -}}
+{{- define "nsm-operator-ui.ingress-service" -}}
+{{- end -}}
