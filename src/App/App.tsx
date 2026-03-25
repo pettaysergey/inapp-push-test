@@ -22,5 +22,13 @@ const loadConfig = async () =>
   });
 
 export const App = () => {
-  return <div>HELLO FROM REACT</div>;
+  useEffect(() => {
+    loadConfig();
+  }, []);
+
+  return (
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
+    </BrowserRouter>
+  );
 };
