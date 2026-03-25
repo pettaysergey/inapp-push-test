@@ -1,6 +1,6 @@
 {
-  "./js/main.1c51c0e9623f2a909649.js.LICENSE.txt": "./js/main.1c51c0e9623f2a909649.js.LICENSE.txt",
-  "./js/main.1c51c0e9623f2a909649.js.map": "./js/main.1c51c0e9623f2a909649.js.map",
+  "./js/main.2ae7ca5821bf18de55f6.js.LICENSE.txt": "./js/main.2ae7ca5821bf18de55f6.js.LICENSE.txt",
+  "./js/main.2ae7ca5821bf18de55f6.js.map": "./js/main.2ae7ca5821bf18de55f6.js.map",
   "connect-simple-push.html": "connect-simple-push.html",
   "firebase-web-push/firebase-app.js": "firebase-web-push/firebase-app.js",
   "firebase-web-push/firebase-messaging.js": "firebase-web-push/firebase-messaging.js",
@@ -30,7 +30,7 @@
   "fonts/VTBGroupUI-SemiBold.woff": "fonts/VTBGroupUI-SemiBold.woff",
   "fonts/VTBGroupUI-SemiBold.woff2": "fonts/VTBGroupUI-SemiBold.woff2",
   "index.html": "index.html",
-  "main.js": "./js/main.1c51c0e9623f2a909649.js",
+  "main.js": "./js/main.2ae7ca5821bf18de55f6.js",
   "manifest.json": "manifest.json",
   "mockServiceWorker.js": "mockServiceWorker.js",
   "resources/favicons/favicon-16x16.png": "resources/favicons/favicon-16x16.png",
