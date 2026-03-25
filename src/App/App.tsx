@@ -30,9 +30,13 @@ export const App = () => {
   return (
     <div>
       <h1>Hello from react</h1>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
+      <BrowserRouter basename="/connect-simple-push">
+        <div>BrowserRouter</div>
+        {/* <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider> */}
       </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <div>QueryClientProvider</div>
+      </QueryClientProvider>
     </div>
   );
 };
