@@ -9,34 +9,29 @@ import { PwaPages } from './components/PwaPages';
 
 const queryClient = new QueryClient();
 
-// const loadConfig = async () =>
-//   new Promise(() => {
-//     const script = document.createElement('script');
-//     script.src = `${window.location.origin}/config.js`;
+const loadConfig = async () =>
+  new Promise(() => {
+    const script = document.createElement('script');
+    script.src = `${window.location.origin}/config.js`;
 
-//     script.onload = () => {
-//       console.log('Конфиг успешно загружен');
-//     };
+    script.onload = () => {
+      console.log('Конфиг успешно загружен');
+    };
 
-//     document.head.appendChild(script);
-//   });
+    document.head.appendChild(script);
+  });
 
 export const App = () => {
-  console.log('isPWA(): ', isPWA());
-  // useEffect(() => {
-  //   loadConfig();
-  // }, []);
+  useEffect(() => {
+    loadConfig();
+  }, []);
 
   return (
     <div>
-      <h1>Hello from react</h1>
+      <h1>Зашел в App</h1>
       <BrowserRouter basename="/connect-simple-push">
-        <div>BrowserRouter</div>
-        {/* <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider> */}
+        <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
       </BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <div>QueryClientProvider</div>
-      </QueryClientProvider>
     </div>
   );
 };
