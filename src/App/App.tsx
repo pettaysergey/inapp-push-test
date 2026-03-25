@@ -22,18 +22,5 @@ const loadConfig = async () =>
   });
 
 export const App = () => {
-  useEffect(() => {
-    loadConfig();
-  }, []);
-
-  if (window.innerWidth > 768) {
-    // TODO-Pettay или перекидывать на https://online.if.test.vtb.ru/404
-    return <ErrorPage />;
-  }
-
-  return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
-    </BrowserRouter>
-  );
+  return <div>HELLO FROM REACT</div>;
 };
