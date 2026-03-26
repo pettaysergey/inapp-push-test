@@ -23,6 +23,7 @@ export const PwaPages = () => {
     const redirect = ulrParams.get('redirect');
 
     if (redirect) {
+      alert('1');
       history.push(`/${redirect}`);
     }
   }, []);
@@ -33,6 +34,7 @@ export const PwaPages = () => {
       channel.onmessage = (e) => {
         console.log('e.data?.type: ', e.data);
         if (e.data?.type === 'SW:Redirect' && e.data.payload) {
+          alert('2');
           messageHandler(e.data.payload);
         }
       };
