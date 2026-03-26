@@ -53,7 +53,7 @@ self.addEventListener('notificationclick', (e) => {
               `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`,
             );
             return client.navigate(
-              `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`,
+              `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}&redirect=/deeplink-runner`,
             );
           }
         }
@@ -61,7 +61,7 @@ self.addEventListener('notificationclick', (e) => {
         console.log('2 ', `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`);
         // TODO-Pettay в этом случае открыть simple-pwa (адрес уточнить у Дани)
         return self.clients.openWindow(
-          `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`,
+          `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}&redirect=/deeplink-runner`,
         );
       });
     }),
