@@ -17,19 +17,24 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('push', (event) => {
-  try {
-    const dataPush = event.data?.json() as UnpPush;
-    if (!dataPush) return;
-    const title = dataPush.data.title || '';
-    const message = dataPush.data.body || '';
+  event.waitUntil(
+    (async () => {
+      try {
+        const dataPush = event.data?.json() as UnpPush;
+        if (!dataPush) return;
 
-    self.registration.showNotification(title, {
-      body: message,
-      data: dataPush.data,
-    });
-  } catch (error) {
-    return webPushService.port.postMessage({ type: 'SW::ErrorParsingData' });
-  }
+        const title = dataPush.data.title || '';
+        const message = dataPush.data.body || '';
+
+        await self.registration.showNotification(title, {
+          body: message,
+          data: dataPush.data,
+        });
+      } catch (error) {
+        webPushService.port.postMessage({ type: 'SW::ErrorParsingData' });
+      }
+    })(),
+  );
 });
 
 self.addEventListener('notificationclick', (e) => {
