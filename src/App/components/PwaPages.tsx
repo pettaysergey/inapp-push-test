@@ -13,21 +13,22 @@ export const PwaPages = () => {
       ? new BroadcastChannel(TYPE_BROADCAST_CHANNAL_SW)
       : null;
 
+  const messageHandler = async (path: string) => {
+    history.push(path);
+  };
+
   useEffect(() => {
+    // если PWA открывается в первый раз для перехода на /deeplink-runner
     const ulrParams = new URLSearchParams(window.location.search);
     const redirect = ulrParams.get('redirect');
-    console.log('redirect: ', redirect);
 
     if (redirect) {
       history.push(`/${redirect}`);
     }
   }, []);
 
-  const messageHandler = async (path: string) => {
-    history.push(path);
-  };
-
   useEffect(() => {
+    // для корректного перехода на /deeplink-runner
     if (channel) {
       channel.onmessage = (e) => {
         console.log('e.data?.type: ', e.data);
