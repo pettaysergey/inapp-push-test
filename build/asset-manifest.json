@@ -1,7 +1,7 @@
 {
   "connect-simple-push.html": "connect-simple-push.html",
-  "connect-simple-push/js/main.c5f04d3f68bb3439fa4d.js.LICENSE.txt": "connect-simple-push/js/main.c5f04d3f68bb3439fa4d.js.LICENSE.txt",
-  "connect-simple-push/js/main.c5f04d3f68bb3439fa4d.js.map": "connect-simple-push/js/main.c5f04d3f68bb3439fa4d.js.map",
+  "connect-simple-push/js/main.5a77632093515b42c547.js.LICENSE.txt": "connect-simple-push/js/main.5a77632093515b42c547.js.LICENSE.txt",
+  "connect-simple-push/js/main.5a77632093515b42c547.js.map": "connect-simple-push/js/main.5a77632093515b42c547.js.map",
   "firebase-web-push/firebase-app.js": "firebase-web-push/firebase-app.js",
   "firebase-web-push/firebase-messaging.js": "firebase-web-push/firebase-messaging.js",
   "fonts.css": "fonts.css",
@@ -30,7 +30,7 @@
   "fonts/VTBGroupUI-SemiBold.woff": "fonts/VTBGroupUI-SemiBold.woff",
   "fonts/VTBGroupUI-SemiBold.woff2": "fonts/VTBGroupUI-SemiBold.woff2",
   "index.html": "index.html",
-  "main.js": "connect-simple-push/js/main.c5f04d3f68bb3439fa4d.js",
+  "main.js": "connect-simple-push/js/main.5a77632093515b42c547.js",
   "manifest.json": "manifest.json",
   "mockServiceWorker.js": "mockServiceWorker.js",
   "resources/favicons/favicon-16x16.png": "resources/favicons/favicon-16x16.png",

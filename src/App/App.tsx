@@ -1,7 +1,7 @@
 import { Button } from '@omega/ui-retail';
 import React, { useEffect } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import { isPWA } from './common/helpers';
 import { ErrorPage } from './components/ErrorPage';
@@ -47,11 +47,11 @@ export const App = () => {
   }
 
   return (
-    <BrowserRouter basename="/connect-simple-push">
+    <HashRouter basename="/connect-simple-push">
       <Button onClick={sendTestPush} type="button">
         Кинуть тестовый пуш
       </Button>
       <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
