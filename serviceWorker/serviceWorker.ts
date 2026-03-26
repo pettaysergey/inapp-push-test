@@ -51,7 +51,7 @@ self.addEventListener('notificationclick', (e) => {
             const target = `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?redirect=deeplink-runner&deviceId=${data.deviceId}`;
             console.log('1 target: ', target);
             client.navigate(target);
-            client.postMessage({
+            webPushService.port.postMessage({
               type: 'SW:Redirect',
               payload: `/deeplink-runner?deviceId=${data.deviceId}`,
             });
