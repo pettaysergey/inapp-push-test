@@ -48,21 +48,21 @@ self.addEventListener('notificationclick', (e) => {
           const isSameHost = new URL(client.url).host === new URL(data.link).host;
           // если хост совпадает
           if (isSameHost && client.focused) {
-            console.log(
-              '1: ',
-              `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`,
-            );
-            return client.navigate(
-              `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}&redirect=/deeplink-runner`,
-            );
+            const target = `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?redirect=deeplink-runner&deviceId=${data.deviceId}`;
+            console.log('1 target: ', target);
+            client.navigate(target);
+            client.postMessage({
+              type: 'SW:Redirect',
+              payload: `/deeplink-runner?deviceId=${data.deviceId}`,
+            });
+            return;
           }
         }
 
-        console.log('2 ', `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`);
+        const target = `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?redirect=deeplink-runner&deviceId=${data.deviceId}`;
+        console.log('2 target', target);
         // TODO-Pettay в этом случае открыть simple-pwa (адрес уточнить у Дани)
-        return self.clients.openWindow(
-          `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}&redirect=/deeplink-runner`,
-        );
+        return self.clients.openWindow(target);
       });
     }),
   );

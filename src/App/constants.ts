@@ -13,4 +13,4 @@ export const IS_DEBUG_MODE = false;
 export const REQUEST_CACHE_TIME_MS = IS_DEBUG_MODE ? 0 : 5 * 60 * 1000;
 export const POST_MESSAGE_TYPE_UNP = 'SW::SendUnpEvent';
 export const TYPE_SEND_TOKEN_FB = 'SW::SendTokenFB';
-export const TYPE_BROADCAST_CHANNAL_SW = 'web-push-sw';
+export const TYPE_BROADCAST_CHANNAL_SW = 'simple-pwa-web-push-sw';
