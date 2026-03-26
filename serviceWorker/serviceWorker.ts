@@ -76,7 +76,7 @@ self.addEventListener('message', (event: MessageEvent) => {
       body: 'Привет из тестового пуша',
       data: {
         deviceId: '123',
-        link: 'https://online.if.test.vtb.ru/',
+        link: 'https://sturdy-basket.surge.sh/',
       },
     });
   }
