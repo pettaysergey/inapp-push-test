@@ -1,3 +1,4 @@
+import { Button } from '@omega/ui-retail';
 import React, { useEffect } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
@@ -26,12 +27,31 @@ export const App = () => {
     loadConfig();
   }, []);
 
+  const sendTestPush = () => {
+    if (window?.Notification.permission === 'granted') {
+      console.log('Отсылаем тестовый пуш');
+
+      navigator.serviceWorker.getRegistration('/connect-simple-push/').then((reg) => {
+        console.log('reg: ', reg);
+
+        reg.active?.postMessage({
+          type: 'SW::SendTestPush',
+        });
+      });
+    }
+  };
+
+  if (window.innerWidth > 768) {
+    // TODO-Pettay или перекидывать на https://online.if.test.vtb.ru/404
+    return <ErrorPage />;
+  }
+
   return (
-    <div>
-      <h1>Зашел в App</h1>
-      <BrowserRouter basename="/connect-simple-push">
-        <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter basename="/connect-simple-push">
+      <Button onClick={sendTestPush} type="button">
+        Кинуть тестовый пуш
+      </Button>
+      <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
+    </BrowserRouter>
   );
 };

@@ -1,5 +1,7 @@
 // =============== Механизм итерации диплинков ===============
 
+import { deletePushDeviceApi } from '@src/App/requests';
+
 import { clearPendingDeeplink } from './indexedDBHelper';
 
 /**
@@ -58,8 +60,9 @@ export const getDeeplinksWithFullPath = (fullPath: string) => {
 /**
  * Проход по массиву диплинков, первый успешный завершает перебор
  */
-export const runDeeplinks = async (link: string) => {
+export const runDeeplinks = async (link: string, deviceId: string) => {
   const deeplinks = getDeeplinksWithFullPath(link);
+  console.log('deeplinks: ', deeplinks);
 
   if (!deeplinks.length) return;
 
@@ -82,5 +85,6 @@ export const runDeeplinks = async (link: string) => {
 
   // в случае неуспеха
   console.log('All deeplinks failed. Going to fallback.', 'fail');
+  await deletePushDeviceApi({ deviceId });
   clearPendingDeeplink();
 };

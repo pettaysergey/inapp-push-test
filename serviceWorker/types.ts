@@ -30,6 +30,11 @@ type SendUnpUrl = {
   payload: string;
 };
 
+type SendTestPush = {
+  type: 'SW::SendTestPush';
+  payload: string;
+};
+
 export type PushStatus = {
   pushId: string;
   receiveTime: string;
@@ -42,7 +47,8 @@ type FromHostEvents =
   | SendRemovingTokenFB
   | SendCDNOriginEvent
   | SendAppVersion
-  | SendUnpUrl;
+  | SendUnpUrl
+  | SendTestPush;
 
 export interface MessageEvent extends ExtendableMessageEvent {
   data: FromHostEvents;

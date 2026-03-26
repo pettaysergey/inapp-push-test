@@ -12,7 +12,7 @@ export const useInitUnpPush = () => {
 
   const messageHandler = async (fbToken: string) => {
     console.log(`Токен ${fbToken}, переход в пульс`);
-    window.location.href = `pulse://${window.location.origin}/i/push/enable?address=${fbToken}&correlation=${getCookie('correlation')}`;
+    window.location.href = `${getCookie('scheme')}://${window.location.host}/i/vpush?correlation=${getCookie('correlation')}&address=${fbToken}`;
   };
 
   useEffect(() => {

@@ -15,7 +15,7 @@ module.exports = [
     entry: ['@babel/polyfill', path.join(__dirname, 'src', 'index.tsx')],
     output: {
       path: path.resolve(__dirname, 'build'),
-      filename: `./js/${filename('js')}`,
+      filename: `connect-simple-push/js/${filename('js')}`,
       chunkFilename: '[id]-[chunkhash].js',
       publicPath: 'auto',
     },

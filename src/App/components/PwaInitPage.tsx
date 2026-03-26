@@ -4,7 +4,7 @@ import React from 'react';
 import { initFireBaseForPushUnp } from '../common/helpers';
 import { useIcon, useInitUnpPush } from '../common/hooks';
 
-const MOCK_IMAGE = 'projects/notification/files/illustrations/ios-pwa-push-on';
+const MOCK_IMAGE = 'projects/notification/files/illustrations/ios-simple-pwa-picture';
 
 const StyledImage = styled('img', {
   width: '100%',

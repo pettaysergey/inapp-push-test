@@ -82,7 +82,10 @@ export const MainPage = () => {
   useEffect(() => {
     const ulrParams = new URLSearchParams(window.location.search);
     const correlation = ulrParams.get('correlation');
-    document.cookie = `correlation=${correlation}`;
+    const scheme = ulrParams.get('scheme');
+
+    document.cookie = `scheme=${scheme}; max-age=7200`;
+    document.cookie = `correlation=${correlation}; max-age=7200`;
   }, []);
 
   if (isLoading) return <Loader />;

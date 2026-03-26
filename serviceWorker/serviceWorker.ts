@@ -48,18 +48,39 @@ self.addEventListener('notificationclick', (e) => {
           const isSameHost = new URL(client.url).host === new URL(data.link).host;
           // если хост совпадает
           if (isSameHost && client.focused) {
-            return client.navigate(`${new URL(client.url).origin}/connect-simple-push/deeplink-runner`);
+            console.log(
+              '1: ',
+              `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`,
+            );
+            return client.navigate(
+              `${new URL(client.url).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`,
+            );
           }
         }
 
+        console.log('2 ', `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`);
         // TODO-Pettay в этом случае открыть simple-pwa (адрес уточнить у Дани)
-        return self.clients.openWindow(`${new URL(data.link).origin}/connect-simple-push/deeplink-runner`);
+        return self.clients.openWindow(
+          `${new URL(data.link).origin}/connect-simple-push/deeplink-runner?deviceId=${data.deviceId}`,
+        );
       });
     }),
   );
 });
 
 self.addEventListener('message', (event: MessageEvent) => {
+  console.log('event: ', event.data.type);
+  // TODO-Pettay удалить после теста
+  if (event.data.type === 'SW::SendTestPush') {
+    self.registration.showNotification('Тестовый пуш', {
+      body: 'Привет из тестового пуша',
+      data: {
+        deviceId: '123',
+        link: 'https://online.if.test.vtb.ru/',
+      },
+    });
+  }
+
   if (event.data.type === 'SW::SendUnpEvent') {
     if (!self.firebase) {
       return;
