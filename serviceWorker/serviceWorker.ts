@@ -65,7 +65,7 @@ self.addEventListener('notificationclick', (e) => {
             }
           }
 
-          const target = `${new URL(deeplink).origin}/connect-simple-push/deeplink-runner?redirect=deeplink-runner&deviceId=${data.deviceId}`;
+          const target = `${new URL(deeplink).origin}/connect-simple-push/?redirect=deeplink-runner&deviceId=${data.deviceId}`;
           console.log('2 target', target);
           // TODO-Pettay в этом случае открыть simple-pwa (адрес уточнить у Дани)
           return self.clients.openWindow(target);
