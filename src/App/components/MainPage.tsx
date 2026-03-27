@@ -15,7 +15,7 @@ import { useIcon, useNotificationsTextsQuery } from '@common/hooks';
 
 const APP_ROOT_ID = 'my-app-root';
 const PORTAL_ID = 'portal-root';
-const MOCK_IMAGE = 'projects/notification/files/illustrations/ios-pwa-push-on';
+const MOCK_IMAGE = 'projects/notification/files/illustrations/ios-simple-pwa-picture';
 
 const StyledImage = styled('img', {
   width: '100%',
@@ -52,9 +52,10 @@ export const MainPage = () => {
   const { hcmsData, isLoading } = useNotificationsTextsQuery();
   const [isOpen, setIsOpen] = useState(false);
   const allowList = [
-    hcmsData?.screen_pushs.push_pwa_onboarding_text_1 || '',
-    hcmsData?.screen_pushs.push_pwa_onboarding_text_2 || '',
-    hcmsData?.screen_pushs.push_pwa_onboarding_text_3 || '',
+    'Откройте в браузере меню внизу экрана',
+    'Выберите «Поделиться»',
+    'Нажмите «Добавить на экран Домой»',
+    'Запустите ярлык и включите уведомления',
   ];
   const icon = useIcon(MOCK_IMAGE);
   const contentForOnboarding = [

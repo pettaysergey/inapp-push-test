@@ -1,12 +1,13 @@
 import { Button } from '@omega/ui-retail';
 import React, { useEffect } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { isPWA } from './common/helpers';
 import { ErrorPage } from './components/ErrorPage';
 import { MainPage } from './components/MainPage';
 import { PwaPages } from './components/PwaPages';
+import packageJson from '../../package.json';
 
 const queryClient = new QueryClient();
 
@@ -24,9 +25,13 @@ const loadConfig = async () =>
 
 export const App = () => {
   useEffect(() => {
+    console.log('version: ', packageJson.version);
     loadConfig();
   }, []);
 
+  const isTest = localStorage.getItem('test-push');
+
+  // TODO-Pettay удалить
   const sendTestPush = () => {
     if (window?.Notification.permission === 'granted') {
       console.log('Отсылаем тестовый пуш');
@@ -47,11 +52,13 @@ export const App = () => {
   }
 
   return (
-    <HashRouter basename="/connect-simple-push">
-      <Button onClick={sendTestPush} type="button">
-        Кинуть тестовый пуш
-      </Button>
+    <BrowserRouter basename="/connect-simple-push">
+      {isTest && (
+        <Button onClick={sendTestPush} type="button">
+          Кинуть тестовый пуш
+        </Button>
+      )}
       <QueryClientProvider client={queryClient}>{isPWA() ? <PwaPages /> : <MainPage />}</QueryClientProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };

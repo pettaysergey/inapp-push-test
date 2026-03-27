@@ -85,6 +85,7 @@ export const runDeeplinks = async (link: string, deviceId: string) => {
 
   // в случае неуспеха
   console.log('All deeplinks failed. Going to fallback.', 'fail');
-  await deletePushDeviceApi({ deviceId });
+  // TODO-Pettay вернуть после успешного теста перебора
+  // await deletePushDeviceApi({ deviceId });
   clearPendingDeeplink();
 };

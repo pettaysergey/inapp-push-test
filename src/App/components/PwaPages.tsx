@@ -1,4 +1,3 @@
-import { Button } from '@omega/ui-retail';
 import React, { useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 
@@ -13,7 +12,7 @@ export const PwaPages = () => {
       ? new BroadcastChannel(TYPE_BROADCAST_CHANNAL_SW)
       : null;
 
-  const messageHandler = async (path: string) => {
+  const messageHandler = (path: string) => {
     history.push(path);
   };
 
@@ -21,9 +20,9 @@ export const PwaPages = () => {
     // если PWA открывается в первый раз для перехода на /deeplink-runner
     const ulrParams = new URLSearchParams(window.location.search);
     const redirect = ulrParams.get('redirect');
+    console.log('redirect: ', redirect);
 
     if (redirect) {
-      alert('1');
       history.push(`/${redirect}`);
     }
   }, []);
@@ -34,7 +33,6 @@ export const PwaPages = () => {
       channel.onmessage = (e) => {
         console.log('e.data?.type: ', e.data);
         if (e.data?.type === 'SW:Redirect' && e.data.payload) {
-          alert('2');
           messageHandler(e.data.payload);
         }
       };
@@ -46,16 +44,13 @@ export const PwaPages = () => {
   }, [channel]);
 
   return (
-    <>
-      <Button onClick={() => history.push('/deeplink-runner')}>Перейти на DeeplinkRunner</Button>
-      <Switch>
-        <Route exact path="/">
-          <PwaInitPage />
-        </Route>
-        <Route exact path="/deeplink-runner">
-          <DeeplinkRunner />
-        </Route>
-      </Switch>
-    </>
+    <Switch>
+      <Route exact path="/">
+        <PwaInitPage />
+      </Route>
+      <Route exact path="/deeplink-runner">
+        <DeeplinkRunner />
+      </Route>
+    </Switch>
   );
 };

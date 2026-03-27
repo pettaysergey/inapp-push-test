@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const PRIVATE_GATEWAY_URL = '/msa/api-gw/private';
+const PUBLIC_GATEWAY_URL = '/msa/api-gw';
 const UNP_PUSH_DEVICE = '/unp/unp-push-device/';
 
 export const deletePushDeviceApi = async ({ deviceId }: { deviceId: string }) => {
   return axios.request({
     method: 'PUT',
-    url: `${PRIVATE_GATEWAY_URL}${UNP_PUSH_DEVICE}v1/unppushdevice/token/block`,
+    url: `${PUBLIC_GATEWAY_URL}${UNP_PUSH_DEVICE}v1/unppushdevice/token/block`,
     data: { deviceId },
   });
 };
