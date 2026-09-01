@@ -28,6 +28,7 @@ self.addEventListener('push', (event) => {
           body: message,
           data: dataPush.data,
         });
+        webPushService.sendPushStatus({ data: { pushId: '1', deviceId: '2' } } as UnpPush, 'push.if.test.vtb.ru');
       } catch (error) {
         webPushService.port.postMessage({ type: 'SW::ErrorParsingData' });
       }
